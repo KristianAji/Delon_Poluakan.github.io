@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talenta Flower Shop – Kota Tomohon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream:   #faf6f0;
+      --sand:    #ede5d8;
+      --blush:   #e8c4b4;
+      --rose:    #c97a6a;
+      --deep:    #3d2b24;
+      --green:   #5a7a5a;
+      --text:    #2e1f19;
+      --muted:   #8a7060;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ─── HERO ─────────────────────────────────────── */
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 30%, rgba(201,122,106,.18) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 70% at 20% 80%, rgba(90,122,90,.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    /* petals */
+    .petal {
+      position: absolute;
+      border-radius: 50% 0 50% 0;
+      opacity: .08;
+      animation: drift linear infinite;
+    }
+    .petal:nth-child(1){ width:80px;height:80px;background:var(--rose);top:-10%;left:15%;animation-duration:18s;animation-delay:0s;}
+    .petal:nth-child(2){ width:50px;height:50px;background:var(--blush);top:5%;left:70%;animation-duration:22s;animation-delay:3s;}
+    .petal:nth-child(3){ width:100px;height:100px;background:var(--rose);top:20%;left:85%;animation-duration:16s;animation-delay:7s;}
+    .petal:nth-child(4){ width:60px;height:60px;background:var(--green);top:60%;left:5%;animation-duration:25s;animation-delay:2s;}
+    .petal:nth-child(5){ width:40px;height:40px;background:var(--blush);top:80%;left:90%;animation-duration:20s;animation-delay:5s;}
+
+    @keyframes drift {
+      0%   { transform: translateY(-120px) rotate(0deg); opacity:.08; }
+      50%  { opacity:.13; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity:.04; }
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 5vw;
+      position: relative;
+      z-index: 10;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      color: var(--deep);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--rose); font-style: italic; }
+
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: .85rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color .3s;
+    }
+
+    .nav-links a:hover { color: var(--rose); }
+
+    /* HERO CENTER */
+    .hero-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 5vw;
+      gap: 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      font-size: .75rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: '';
+      display: block;
+      width: 40px; height: 1px;
+      background: var(--muted);
+      opacity: .5;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 9vw, 7rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -.01em;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--rose);
+    }
+
+    .hero-sub {
+      max-width: 480px;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .hero-btns {
+      display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+      margin-top: .5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .8rem 1.8rem;
+      border-radius: 2rem;
+      font-size: .85rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all .3s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--rose);
+      color: #fff;
+      box-shadow: 0 4px 24px rgba(201,122,106,.35);
+    }
+
+    .btn-primary:hover {
+      background: var(--deep);
+      box-shadow: 0 6px 32px rgba(61,43,36,.3);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--deep);
+      border: 1.5px solid var(--blush);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--rose);
+      color: var(--rose);
+      transform: translateY(-2px);
+    }
+
+    /* HERO BOTTOM STRIP */
+    .hero-strip {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      padding: 1.5rem 5vw 2.5rem;
+      position: relative; z-index: 2;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--rose);
+    }
+
+    .stat-label {
+      font-size: .7rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ─── DIVIDER ───────────────────────────────────── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--sand), transparent);
+      margin: 0 5vw;
+    }
+
+    /* ─── SECTION COMMON ────────────────────────────── */
+    section { padding: 6rem 5vw; }
+
+    .section-label {
+      font-size: .7rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: .75rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .section-title em { font-style: italic; color: var(--rose); }
+
+    .section-desc {
+      max-width: 520px;
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: .95rem;
+    }
+
+    /* ─── ABOUT ─────────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-img-wrap {
+      position: relative;
+    }
+
+    .about-img-placeholder {
+      background: linear-gradient(135deg, var(--sand) 0%, var(--blush) 100%);
+      border-radius: 2px 60px 2px 2px;
+      aspect-ratio: 4/5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      color: rgba(255,255,255,.7);
+    }
+
+    .about-badge {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      background: var(--deep);
+      color: var(--cream);
+      border-radius: 50%;
+      width: 110px; height: 110px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .about-badge-num { font-size: 2rem; font-weight: 600; line-height: 1; }
+    .about-badge-txt { font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; opacity: .75; }
+
+    .about-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .feature-card {
+      background: var(--sand);
+      border-radius: 12px;
+      padding: 1.2rem;
+    }
+
+    .feature-icon { font-size: 1.4rem; margin-bottom: .4rem; }
+    .feature-title { font-size: .8rem; font-weight: 500; letter-spacing: .04em; margin-bottom: .3rem; }
+    .feature-desc { font-size: .75rem; color: var(--muted); line-height: 1.6; }
+
+    /* ─── KATALOG ────────────────────────────────────── */
+    .catalog-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: .4rem 1rem;
+      border-radius: 2rem;
+      font-size: .75rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: 1.5px solid var(--sand);
+      background: transparent;
+      color: var(--muted);
+      transition: all .25s;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--rose);
+      border-color: var(--rose);
+      color: #fff;
+    }
+
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform .3s, box-shadow .3s;
+      cursor: pointer;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(61,43,36,.12);
+    }
+
+    .product-img {
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-img .bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, var(--sand), var(--blush));
+      opacity: .6;
+    }
+
+    .product-img span { position: relative; z-index: 1; }
+
+    .product-badge {
+      position: absolute;
+      top: .75rem; right: .75rem;
+      background: var(--rose);
+      color: #fff;
+      font-size: .6rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .25rem .6rem;
+      border-radius: 2rem;
+      z-index: 2;
+    }
+
+    .product-info {
+      padding: 1.2rem 1.4rem 1.4rem;
+    }
+
+    .product-cat {
+      font-size: .65rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: .3rem;
+    }
+
+    .product-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: .3rem;
+    }
+
+    .product-desc {
+      font-size: .78rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .product-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .product-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--rose);
+    }
+
+    .wa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      padding: .45rem 1rem;
+      background: #25d366;
+      color: #fff;
+      border-radius: 2rem;
+      font-size: .72rem;
+      letter-spacing: .04em;
+      text-decoration: none;
+      transition: all .25s;
+    }
+
+    .wa-btn:hover { background: #128c4e; transform: translateY(-1px); }
+
+    /* ─── PROSES PEMESANAN ───────────────────────────── */
+    .steps-bg {
+      background: var(--deep);
+      color: var(--cream);
+      border-radius: 24px;
+      padding: 4rem 5%;
+    }
+
+    .steps-bg .section-title { color: var(--cream); }
+    .steps-bg .section-desc { color: rgba(250,246,240,.6); }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .step {
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+      position: relative;
+    }
+
+    .step:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -1.2rem;
+      top: .3rem;
+      color: var(--rose);
+      font-size: 1.2rem;
+    }
+
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--rose);
+      line-height: 1;
+      opacity: .6;
+    }
+
+    .step-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .step-desc {
+      font-size: .8rem;
+      color: rgba(250,246,240,.55);
+      line-height: 1.7;
+    }
+
+    /* ─── KONTAK ─────────────────────────────────────── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.2rem;
+      background: var(--sand);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text);
+      transition: all .25s;
+    }
+
+    .contact-card:hover {
+      background: var(--blush);
+      transform: translateX(4px);
+    }
+
+    .contact-icon { font-size: 1.5rem; }
+
+    .contact-label {
+      font-size: .65rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .contact-value {
+      font-size: .9rem;
+      font-weight: 500;
+    }
+
+    .map-placeholder {
+      background: linear-gradient(135deg, var(--sand) 0%, var(--blush) 50%, var(--sand) 100%);
+      border-radius: 16px;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--muted);
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .map-placeholder::before {
+      content: '📍';
+      font-size: 3rem;
+      display: block;
+      margin-bottom: .75rem;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────── */
+    footer {
+      background: var(--deep);
+      color: rgba(250,246,240,.5);
+      text-align: center;
+      padding: 2rem 5vw;
+      font-size: .78rem;
+      letter-spacing: .04em;
+    }
+
+    footer a { color: var(--blush); text-decoration: none; }
+
+    /* ─── MOBILE ─────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+
+      .about-grid, .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .about-badge { right: 1rem; bottom: -1rem; width: 90px; height: 90px; }
+      .about-badge-num { font-size: 1.6rem; }
+
+      .hero-strip { gap: 1.5rem; }
+
+      .step:not(:last-child)::after { display: none; }
+
+      .steps-grid { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── HERO ──────────────────────────────────────── -->
+  <section class="hero">
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+
+    <nav>
+      <a class="logo" href="#">Talenta <span>Flower</span></a>
+      <ul class="nav-links">
+        <li><a href="#katalog">Katalog</a></li>
+        <li><a href="#tentang">Tentang</a></li>
+        <li><a href="#pesan">Cara Pesan</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+      </ul>
+      <a class="btn btn-primary" href="https://wa.me/6282336086339" target="_blank">💬 WhatsApp</a>
+    </nav>
+
+    <div class="hero-center">
+      <p class="hero-eyebrow">Kota Tomohon, Sulawesi Utara</p>
+      <h1>Rangkaian Bunga<br><em>Terbaik</em> untuk<br>Setiap Momen</h1>
+      <p class="hero-sub">Dari pernikahan hingga wisuda, kami hadirkan keindahan bunga segar pilihan dengan harga terjangkau dan pengiriman ke seluruh Tomohon.</p>
+      <div class="hero-btns">
+        <a class="btn btn-primary" href="#katalog">🌸 Lihat Katalog</a>
+        <a class="btn btn-outline" href="#pesan">Cara Pemesanan</a>
+      </div>
+    </div>
+
+    <div class="hero-strip">
+      <div class="stat">
+        <div class="stat-num">100+</div>
+        <div class="stat-label">Pelanggan Puas</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Jenis Produk</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">5★</div>
+        <div class="stat-label">Rating Layanan</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ─── TENTANG ───────────────────────────────────── -->
+  <section id="tentang">
+    <div class="about-grid">
+      <div class="about-img-wrap">
+        <div class="about-img-placeholder">🌺</div>
+        <div class="about-badge">
+          <span class="about-badge-num">★</span>
+          <span class="about-badge-txt">Tomohon<br>Florist</span>
+        </div>
+      </div>
+      <div>
+        <p class="section-label">Tentang Kami</p>
+        <h2 class="section-title">Kios Bunga <em>Talenta</em></h2>
+        <p class="section-desc">
+          Kios Bunga Talenta adalah usaha florist lokal yang berlokasi di Kota Tomohon, kota bunga terbaik di Sulawesi Utara. Kami menyediakan berbagai rangkaian bunga segar untuk kebutuhan personal maupun acara seremonial.
+        </p>
+        <div class="about-features">
+          <div class="feature-card">
+            <div class="feature-icon">🌷</div>
+            <div class="feature-title">Bunga Segar</div>
+            <div class="feature-desc">Langsung dari sumber terpercaya di Tomohon</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🚚</div>
+            <div class="feature-title">Antar ke Lokasi</div>
+            <div class="feature-desc">Pengiriman ke seluruh area Tomohon</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">💌</div>
+            <div class="feature-title">Custom Order</div>
+            <div class="feature-desc">Desain sesuai keinginan dan budget Anda</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <div class="feature-title">Respons Cepat</div>
+            <div class="feature-desc">Balas WhatsApp dalam hitungan menit</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ─── KATALOG ───────────────────────────────────── -->
+  <section id="katalog">
+    <div class="catalog-header">
+      <div>
+        <p class="section-label">Produk Kami</p>
+        <h2 class="section-title">Katalog <em>Bunga</em></h2>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-btn active" onclick="filterCatalog('semua', this)">Semua</button>
+        <button class="filter-btn" onclick="filterCatalog('rangkaian', this)">Rangkaian</button>
+        <button class="filter-btn" onclick="filterCatalog('bucket', this)">Bucket</button>
+        <button class="filter-btn" onclick="filterCatalog('dekorasi', this)">Dekorasi</button>
+        <button class="filter-btn" onclick="filterCatalog('papan', this)">Papan Bunga</button>
+      </div>
+    </div>
+
+    <div class="catalog-grid" id="catalog-grid">
+      <!-- Kartu produk di-render oleh JS -->
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ─── CARA PESAN ────────────────────────────────── -->
+  <section id="pesan" style="padding: 6rem 5vw;">
+    <div class="steps-bg">
+      <p class="section-label" style="color:var(--blush)">Mudah & Cepat</p>
+      <h2 class="section-title">Cara <em>Pemesanan</em></h2>
+      <p class="section-desc">Pesan bunga favorit Anda hanya dalam 4 langkah mudah melalui WhatsApp.</p>
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-title">Pilih Produk</div>
+          <div class="step-desc">Jelajahi katalog dan pilih rangkaian bunga yang Anda inginkan.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-title">Hubungi Kami</div>
+          <div class="step-desc">Chat via WhatsApp, sebutkan produk dan tanggal kebutuhan.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-title">Konfirmasi & Bayar</div>
+          <div class="step-desc">Setujui harga dan lakukan pembayaran via transfer bank.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-title">Terima Bunga</div>
+          <div class="step-desc">Bunga diantar ke lokasi Anda atau dapat diambil di kios.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── KONTAK ────────────────────────────────────── -->
+  <section id="kontak">
+    <div class="contact-grid">
+      <div>
+        <p class="section-label">Hubungi Kami</p>
+        <h2 class="section-title">Temukan <em>Kami</em></h2>
+        <p class="section-desc">Kami siap melayani Anda setiap hari. Hubungi kami melalui salah satu channel di bawah ini.</p>
+        <div class="contact-cards">
+          <a class="contact-card" href="https://wa.me/6282336086339" target="_blank">
+            <span class="contact-icon">💬</span>
+            <div>
+              <div class="contact-label">WhatsApp</div>
+              <div class="contact-value">0823-3608-6339</div>
+            </div>
+          </a>
+          <a class="contact-card" href="https://maps.google.com/?q=Tomohon,+Sulawesi+Utara" target="_blank">
+            <span class="contact-icon">📍</span>
+            <div>
+              <div class="contact-label">Lokasi</div>
+              <div class="contact-value">Kota Tomohon, Sulawesi Utara</div>
+            </div>
+          </a>
+          <a class="contact-card" href="https://instagram.com" target="_blank">
+            <span class="contact-icon">📸</span>
+            <div>
+              <div class="contact-label">Instagram</div>
+              <div class="contact-value">@talentaflowershop</div>
+            </div>
+          </a>
+          <div class="contact-card">
+            <span class="contact-icon">🕐</span>
+            <div>
+              <div class="contact-label">Jam Operasional</div>
+              <div class="contact-value">Setiap Hari, 07.00 – 20.00 WITA</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="map-placeholder">
+          <div>
+            Kios Bunga Talenta<br>
+            <small style="opacity:.7">Kota Tomohon, Sulawesi Utara</small><br><br>
+            <a class="btn btn-primary" href="https://maps.google.com/?q=Tomohon+Sulawesi+Utara" target="_blank" style="font-size:.75rem">Buka di Google Maps</a>
+          </div>
+        </div>
+        <!-- 
+          CARA EMBED GOOGLE MAPS:
+          Ganti div.map-placeholder di atas dengan:
+          <iframe
+            src="PASTE_EMBED_URL_DARI_GOOGLE_MAPS_DI_SINI"
+            width="100%" height="300" style="border:0;border-radius:16px;"
+            allowfullscreen loading="lazy">
+          </iframe>
+        -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ────────────────────────────────────── -->
+  <footer>
+    <p>© 2025 <strong style="color:var(--blush)">Kios Bunga Talenta</strong> · Kota Tomohon, Sulawesi Utara</p>
+    <p style="margin-top:.4rem">Website ini dibuat sebagai bagian dari program digitalisasi UMKM · <a href="https://unsrat.ac.id" target="_blank">Universitas Sam Ratulangi</a></p>
+  </footer>
+
+  <!-- ─── SCRIPT ────────────────────────────────────── -->
+  <script>
+    // ── DATA PRODUK ─────────────────────────────────────
+    // Ganti emoji dan data di bawah sesuai produk asli.
+    // Untuk gambar nyata, ganti "emoji" dengan path gambar:
+    //   imgSrc: "img/bucket-mawar.jpg"
+    // dan di HTML guna <img src="${p.imgSrc}" alt="${p.nama}" style="width:100%;height:100%;object-fit:cover" />
+    const products = [
+      { id:1, kategori:'bucket',    emoji:'💐', nama:'Bucket Mawar Merah',    deskripsi:'Rangkaian mawar merah segar cocok untuk hadiah ulang tahun & anniversary.', harga:'Rp 85.000', badge:'Bestseller' },
+      { id:2, kategori:'rangkaian', emoji:'🌸', nama:'Hand Bouquet Wisuda',   deskripsi:'Bouquet elegan untuk momen wisuda, tersedia berbagai pilihan warna.', harga:'Rp 120.000', badge:null },
+      { id:3, kategori:'dekorasi',  emoji:'🌿', nama:'Dekorasi Meja Pernikahan', deskripsi:'Sentuhan natural untuk meja resepsi pernikahan Anda yang tak terlupakan.', harga:'Rp 250.000', badge:'Custom' },
+      { id:4, kategori:'papan',     emoji:'🎊', nama:'Papan Bunga Selamat',   deskripsi:'Papan bunga besar untuk ucapan selamat pembukaan usaha atau acara penting.', harga:'Rp 350.000', badge:null },
+      { id:5, kategori:'bucket',    emoji:'🌻', nama:'Bucket Bunga Campuran', deskripsi:'Perpaduan bunga segar warna-warni, harum dan tahan lama.', harga:'Rp 75.000', badge:'Hemat' },
+      { id:6, kategori:'rangkaian', emoji:'🌹', nama:'Rangkaian Mawar Pink',  deskripsi:'Mawar pink lembut dalam vas, hadiah sempurna untuk orang tersayang.', harga:'Rp 95.000', badge:null },
+      { id:7, kategori:'bucket',    emoji:'🌷', nama:'Bucket Tulip Pastel',   deskripsi:'Tulip import warna pastel, eksklusif dan elegan untuk hadiah spesial.', harga:'Rp 150.000', badge:'Premium' },
+      { id:8, kategori:'dekorasi',  emoji:'🍃', nama:'Standing Flower',       deskripsi:'Bunga berdiri cantik untuk acara seminar, konferensi, atau pameran.', harga:'Rp 300.000', badge:null },
+    ];
+
+    let activeFilter = 'semua';
+
+    function filterCatalog(filter, btn) {
+      activeFilter = filter;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderCatalog();
+    }
+
+    function renderCatalog() {
+      const grid = document.getElementById('catalog-grid');
+      const filtered = activeFilter === 'semua'
+        ? products
+        : products.filter(p => p.kategori === activeFilter);
+
+      grid.innerHTML = filtered.map(p => `
+        <div class="product-card" data-kategori="${p.kategori}">
+          <div class="product-img">
+            <div class="bg"></div>
+            <span>${p.emoji}</span>
+            ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ''}
+          </div>
+          <div class="product-info">
+            <p class="product-cat">${p.kategori}</p>
+            <h3 class="product-name">${p.nama}</h3>
+            <p class="product-desc">${p.deskripsi}</p>
+            <div class="product-footer">
+              <span class="product-price">${p.harga}</span>
+              <a class="wa-btn"
+                href="https://wa.me/6282336086339?text=Halo%20Kios%20Bunga%20Talenta%2C%20saya%20tertarik%20dengan%20produk%20*${encodeURIComponent(p.nama)}*%20(${encodeURIComponent(p.harga)}).%20Apakah%20masih%20tersedia%3F"
+                target="_blank">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Pesan
+              </a>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    renderCatalog();
+  </script>
+</body>
+</html>
